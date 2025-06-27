@@ -3,14 +3,12 @@ import { preloadQuery } from "convex/nextjs";
 import { api } from "../../../../convex/_generated/api";
 import { Metadata } from "next";
 
-
 export const metadata: Metadata = {
-    title: 'Airport Bus Booking'
-}
+  title: "Airport Bus Booking",
+};
 
 export default async function Page() {
+  const preloadPayments = await preloadQuery(api.payment.get, {});
 
-    const preloadPayments = await preloadQuery(api.payments.get, {})
-
-    return <BookNowMainPage preloadedPayments={preloadPayments} />
+  return <BookNowMainPage preloadedPayments={preloadPayments} />;
 }

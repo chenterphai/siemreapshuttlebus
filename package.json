@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && email build --dir emails",
+    "build": "next build && email build",
     "start": "next start",
     "lint": "next lint",
-    "email": "email dev --dir emails"
+    "email": "email dev",
+    "email:export": "email export"
   },
   "dependencies": {
     "@auth/core": "0.37.0",

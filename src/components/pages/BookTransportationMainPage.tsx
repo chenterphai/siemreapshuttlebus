@@ -48,7 +48,7 @@ const BookTransportationMainPage = ({
   preloadedPayment,
 }: {
   preloadedTransportation: Preloaded<typeof api.transportation.select>;
-  preloadedPayment: Preloaded<typeof api.payments.get>;
+  preloadedPayment: Preloaded<typeof api.payment.get>;
 }) => {
   const transportation: TransportationType = usePreloadedQuery(
     preloadedTransportation

@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      new URL("https://warmhearted-goose-69.convex.cloud/api/storage/**"),
+      new URL("https://enchanted-shepherd-899.convex.cloud/api/storage/**"),
     ],
   },
   experimental: {
