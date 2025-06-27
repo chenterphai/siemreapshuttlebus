@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && email build --dir emails",
     "start": "next start",
     "lint": "next lint",
     "email": "email dev --dir emails"
   },
   "dependencies": {
+    "@auth/core": "0.37.0",
     "@convex-dev/auth": "^0.0.87",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
