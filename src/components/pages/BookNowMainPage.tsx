@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -386,7 +386,7 @@ const BookNowMainPage = ({
             <div className="relative lg:col-span-1 col-span-2">
               <FormControl fullWidth>
                 {departureFrom && departureTo ? (
-                  <>
+                  <Suspense>
                     <InputLabel id="departure-time-select-label">
                       Departure Time
                     </InputLabel>
@@ -423,7 +423,7 @@ const BookNowMainPage = ({
                           </div>
                         ))}
                     </Select>
-                  </>
+                  </Suspense>
                 ) : (
                   <>
                     <TextField
@@ -512,25 +512,26 @@ const BookNowMainPage = ({
                   />
                 </FormControl>
               </div>
-
-              <div>
-                <FormControl fullWidth>
-                  <InputLabel id="trip-select-label">Trip</InputLabel>
-                  <Select
-                    labelId="trip-select-label"
-                    id="trip-select"
-                    value={trip}
-                    label="Trip"
-                    onChange={handleChangeTrip}
-                  >
-                    <MenuItem value={"One Way"}>One Way</MenuItem>
-                    <MenuItem value={"Round trip"}>Round trip</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
+              {direction === "from" && (
+                <div>
+                  <FormControl fullWidth>
+                    <InputLabel id="trip-select-label">Trip</InputLabel>
+                    <Select
+                      labelId="trip-select-label"
+                      id="trip-select"
+                      value={trip}
+                      label="Trip"
+                      onChange={handleChangeTrip}
+                    >
+                      <MenuItem value={"One Way"}>One Way</MenuItem>
+                      <MenuItem value={"Round trip"}>Round trip</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+              )}
             </div>
             {trip === "Round trip" && (
-              <>
+              <Suspense>
                 <div className="relative col-span-2">
                   <TextField
                     required
@@ -599,7 +600,7 @@ const BookNowMainPage = ({
                     )}
                   </FormControl>
                 </div>
-              </>
+              </Suspense>
             )}
           </div>
         </div>
@@ -712,23 +713,27 @@ const BookNowMainPage = ({
                 }
               }}
             />
-            <FormControl fullWidth className="md:col-span-1 col-span-2">
-              <InputLabel id="payment-select-label">Payment Method</InputLabel>
-              <Select
-                labelId="payment-select-label"
-                id="payment-select"
-                value={payment}
-                label="Payment Method"
-                onChange={handleChangePayment}
-              >
-                {payments &&
-                  payments.map((item) => (
-                    <MenuItem key={item._id} value={item.value}>
-                      {item.title}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </FormControl>
+            <Suspense>
+              <FormControl fullWidth className="md:col-span-1 col-span-2">
+                <InputLabel id="payment-select-label">
+                  Payment Method
+                </InputLabel>
+                <Select
+                  labelId="payment-select-label"
+                  id="payment-select"
+                  value={payment}
+                  label="Payment Method"
+                  onChange={handleChangePayment}
+                >
+                  {payments &&
+                    payments.map((item) => (
+                      <MenuItem key={item._id} value={item.value}>
+                        {item.title}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+            </Suspense>
             <div className="col-span-2">
               <TextField
                 type="text"
