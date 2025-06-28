@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -344,66 +344,70 @@ const BookTransportationMainPage = ({
             <div className="h-[3px] max-sm:h-[2px] w-[50%] bg-primary" />
           </div>
         </div>
-        {transportation === undefined ? (
-          <div className="mt-6">
-            <Skeleton className="w-full h-[150px] rounded-lg" />
-          </div>
-        ) : (
-          <div className="mt-6 items-center pb-6 border-b">
-            <div className="flex max-[460px]:flex-col items-start gap-2.5">
-              <div className="relative w-[160px] max-[460px]:w-full h-[140px] max-[460px]:h-[200px] overflow-hidden rounded-md">
-                <Image
-                  src={transportation.url}
-                  alt={transportation.title}
-                  className="w-full h-full object-cover"
-                  width={512}
-                  height={512}
-                  objectFit="cover"
-                />
+        {transportation && (
+          <Suspense
+            fallback={
+              <div className="mt-6">
+                <Skeleton className="w-full h-[150px] rounded-lg" />
               </div>
-              <div className="p-4 max-[460px]:p-2 py-0">
-                <p className="text-lg text-neutral-800 font-medium max-[460px]:text-sm">
-                  {transportation.title}
-                </p>
-                <div className="flex items-center gap-x-5">
-                  <div className="flex items-end gap-2">
-                    <span className="text-sm text-neutral-500">Price: </span>
-                    <span className="font-semibold text-sm text-primary">
-                      {parseFloat(transportation.price).toFixed(2)} USD
-                    </span>
-                  </div>
-                  <div className="w-1 h-1 rounded-full bg-neutral-400" />
-                  <div className="text-sm text-neutral-500">
-                    {transportation.capacity}
-                  </div>
+            }
+          >
+            <div className="mt-6 items-center pb-6 border-b">
+              <div className="flex max-[460px]:flex-col items-start gap-2.5">
+                <div className="relative w-[160px] max-[460px]:w-full h-[140px] max-[460px]:h-[200px] overflow-hidden rounded-md">
+                  <Image
+                    src={transportation.url}
+                    alt={transportation.title}
+                    className="w-full h-full object-cover"
+                    width={512}
+                    height={512}
+                    objectFit="cover"
+                  />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 max-[460px]:mt-4">
-                  <div className="">
-                    <p className="text-xs text-neutral-800 underline font-medium mb-1">
-                      Include
-                    </p>
-                    {transportation.include?.length &&
-                      transportation.include.map((item, i) => (
-                        <div className="text-xs text-neutral-500" key={i}>
-                          {item}
-                        </div>
-                      ))}
+                <div className="p-4 max-[460px]:p-2 py-0">
+                  <p className="text-lg text-neutral-800 font-medium max-[460px]:text-sm">
+                    {transportation.title}
+                  </p>
+                  <div className="flex items-center gap-x-5">
+                    <div className="flex items-end gap-2">
+                      <span className="text-sm text-neutral-500">Price: </span>
+                      <span className="font-semibold text-sm text-primary">
+                        {parseFloat(transportation.price).toFixed(2)} USD
+                      </span>
+                    </div>
+                    <div className="w-1 h-1 rounded-full bg-neutral-400" />
+                    <div className="text-sm text-neutral-500">
+                      {transportation.capacity}
+                    </div>
                   </div>
-                  <div className="">
-                    <p className="text-xs text-neutral-800 underline font-medium mb-1">
-                      Exclude
-                    </p>
-                    {transportation.exclude?.length &&
-                      transportation.exclude.map((item, i) => (
-                        <div className="text-xs text-neutral-500" key={i}>
-                          {item}
-                        </div>
-                      ))}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 max-[460px]:mt-4">
+                    <div className="">
+                      <p className="text-xs text-neutral-800 underline font-medium mb-1">
+                        Include
+                      </p>
+                      {transportation.include?.length &&
+                        transportation.include.map((item, i) => (
+                          <div className="text-xs text-neutral-500" key={i}>
+                            {item}
+                          </div>
+                        ))}
+                    </div>
+                    <div className="">
+                      <p className="text-xs text-neutral-800 underline font-medium mb-1">
+                        Exclude
+                      </p>
+                      {transportation.exclude?.length &&
+                        transportation.exclude.map((item, i) => (
+                          <div className="text-xs text-neutral-500" key={i}>
+                            {item}
+                          </div>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Suspense>
         )}
         <div className="mt-6">
           <div className="grid grid-cols-1 lg:grid-cols-6 md:grid-cols-2 gap-x-3 gap-y-8">
@@ -585,7 +589,7 @@ const BookTransportationMainPage = ({
               )}
             </div>
             {trip === "Round trip" && (
-              <>
+              <Suspense>
                 <div className="relative col-span-2">
                   <TextField
                     required
@@ -680,7 +684,7 @@ const BookTransportationMainPage = ({
                     </div>
                   )}
                 </div>
-              </>
+              </Suspense>
             )}
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 // import { useQuery } from 'convex/react'
-import React from "react";
+import React, { Suspense } from "react";
 import TicketBookingSection from "../TicketBookingSection";
 import AirportShuttleBusSection from "../AirportShuttleBusSection";
 import PrivateTransportationServiceSection from "../PrivateTransportationServiceSection";
@@ -19,14 +19,14 @@ const HomePage = (props: {
   const transportation = usePreloadedQuery(props.preloadedTransportation);
   const support = usePreloadedQuery(props.preloadedSupport);
   return (
-    <>
+    <Suspense>
       <TicketBookingSection
         departureTo={departureTimeTo}
         departureFrom={departureTimeFrom}
       />
       <AirportShuttleBusSection support={support} />
       <PrivateTransportationServiceSection transportations={transportation} />
-    </>
+    </Suspense>
   );
 };
 
