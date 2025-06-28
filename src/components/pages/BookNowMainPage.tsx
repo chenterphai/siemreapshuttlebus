@@ -512,22 +512,23 @@ const BookNowMainPage = ({
                   />
                 </FormControl>
               </div>
-
-              <div>
-                <FormControl fullWidth>
-                  <InputLabel id="trip-select-label">Trip</InputLabel>
-                  <Select
-                    labelId="trip-select-label"
-                    id="trip-select"
-                    value={trip}
-                    label="Trip"
-                    onChange={handleChangeTrip}
-                  >
-                    <MenuItem value={"One Way"}>One Way</MenuItem>
-                    <MenuItem value={"Round trip"}>Round trip</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
+              {direction === "from" && (
+                <div>
+                  <FormControl fullWidth>
+                    <InputLabel id="trip-select-label">Trip</InputLabel>
+                    <Select
+                      labelId="trip-select-label"
+                      id="trip-select"
+                      value={trip}
+                      label="Trip"
+                      onChange={handleChangeTrip}
+                    >
+                      <MenuItem value={"One Way"}>One Way</MenuItem>
+                      <MenuItem value={"Round trip"}>Round trip</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+              )}
             </div>
             {trip === "Round trip" && (
               <Suspense>
