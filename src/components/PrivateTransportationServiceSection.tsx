@@ -77,7 +77,7 @@ const PrivateTransportationServiceSection = ({
                 <p className="text-sm font-medium text-neutral-800">{title}</p>
                 <div className="flex items-center gap-x-2 mb-2">
                   <span className="text-xs text-neutral-500">Price:</span>
-                  <span className="text-primary text-sm font-semibold">
+                  <span className="text-[#1C6AE4] text-sm font-semibold">
                     {parseFloat(price).toFixed(2)} USD
                   </span>
                 </div>
@@ -88,9 +88,9 @@ const PrivateTransportationServiceSection = ({
                     height="16"
                     viewBox="0 0 24 24"
                   >
-                    <path fill="var(--primary)" d="m19 12l-7-6v5H6v2h6v5z" />
+                    <path fill="#1C6AE4" d="m19 12l-7-6v5H6v2h6v5z" />
                   </svg>
-                  <span className="text-xs text-primary font-semibold">
+                  <span className="text-xs text-[#1C6AE4] font-semibold">
                     Book Now
                   </span>
                 </div>

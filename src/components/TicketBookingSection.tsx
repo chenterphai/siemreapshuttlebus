@@ -194,7 +194,7 @@ const TicketBookingSection = ({
             <p className="text-xl font-semibold text-neutral-700">
               Airport Bus Ticket Booking
             </p>
-            <div className="h-[3px] bg-primary" />
+            <div className="h-[3px] bg-[#1C6AE4]" />
           </div>
         </div>
         <div className="mt-6">
